@@ -6,13 +6,13 @@ Uses asyncio tasks — in production, replace with APScheduler or Celery Beat.
 import asyncio
 import logging
 
+from sqlalchemy import select
+
 from aml.db import async_session
 from aml.models.module import Module
 from aml.services.confidence import apply_monthly_decay
 from aml.services.extraction import extract_patterns
 from aml.services.retention import archive_old_episodes, cleanup_deactivated_rules
-
-from sqlalchemy import select
 
 logger = logging.getLogger(__name__)
 

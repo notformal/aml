@@ -6,7 +6,7 @@ Handles auto-decay, deactivation, and confirmation of rules.
 import logging
 from datetime import datetime, timedelta, timezone
 
-from sqlalchemy import select, update
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from aml.config import settings
@@ -43,7 +43,10 @@ async def apply_monthly_decay(db: AsyncSession) -> int:
 
         if rule.confidence < threshold:
             rule.active = False
-            logger.info("Auto-deactivated rule %s (confidence %.2f < %.2f)", rule.id, rule.confidence, threshold)
+            logger.info(
+                "Auto-deactivated rule %s (confidence %.2f < %.2f)",
+                rule.id, rule.confidence, threshold,
+            )
 
         affected += 1
 

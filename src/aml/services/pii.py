@@ -69,7 +69,9 @@ def _sanitize_recursive(
     if isinstance(data, str) and scan_values:
         result = data
         for name, pattern in PII_PATTERNS.items():
-            result = pattern.sub(transform(pattern.search(result).group()) if pattern.search(result) else result, result)
+            match = pattern.search(result)
+            if match:
+                result = pattern.sub(transform(match.group()), result)
             if result != data:
                 break
         return result

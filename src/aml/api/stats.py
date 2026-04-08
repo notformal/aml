@@ -8,7 +8,6 @@ from aml.db import get_db
 from aml.models.episode import Episode
 from aml.models.extraction import ExtractionRun
 from aml.models.feedback import Feedback
-from aml.models.rule import Rule
 from aml.services.confidence import get_confidence_stats
 
 router = APIRouter()

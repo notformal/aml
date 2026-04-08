@@ -7,12 +7,11 @@
 
 import logging
 import operator
-from typing import Any
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from aml.repositories.rule import list_rules
-from aml.services.context import format_episodes_for_prompt, format_rules_for_prompt
+from aml.services.context import format_rules_for_prompt
 
 logger = logging.getLogger(__name__)
 

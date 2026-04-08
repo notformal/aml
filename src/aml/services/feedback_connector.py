@@ -4,13 +4,12 @@ Supports polling external APIs (Meta Ads, CRM, analytics) to attach
 feedback to episodes after the fact.
 """
 
-import asyncio
 import logging
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
-from typing import Any, Callable, Awaitable
+from typing import Awaitable, Callable
 
-from sqlalchemy import select, func
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from aml.models.episode import Episode
@@ -130,7 +129,10 @@ async def poll_connector(
     if created:
         await db.commit()
 
-    logger.info("Connector %s:%s created %d feedback records", config.module_id, config.source, created)
+    logger.info(
+        "Connector %s:%s created %d feedback records",
+        config.module_id, config.source, created,
+    )
     return created
 
 

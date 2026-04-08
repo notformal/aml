@@ -6,7 +6,7 @@ it gets promoted to a wider scope.
 
 import logging
 
-from sqlalchemy import select, func
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from aml.models.module import Module
@@ -57,7 +57,10 @@ async def check_rule_promotion(db: AsyncSession, rule_id) -> str | None:
         if cross_evidence >= 2:
             rule.scope = "project"
             await db.commit()
-            logger.info("Promoted rule %s to project scope (evidence from %d siblings)", rule.id, cross_evidence)
+            logger.info(
+                "Promoted rule %s to project scope (evidence from %d siblings)",
+                rule.id, cross_evidence,
+            )
             return "project"
 
     # Check cross-project promotion

@@ -17,7 +17,7 @@ class Episode(Base):
     action: Mapped[str] = mapped_column(String(200), nullable=False)
     input_data: Mapped[dict] = mapped_column(JSON, nullable=False)
     output_data: Mapped[dict] = mapped_column(JSON, nullable=False)
-    input_embedding = mapped_column(String, nullable=True)  # Vector(1536) in production via migration
+    input_embedding = mapped_column(String, nullable=True)  # Vector(1536) in prod
     metadata_: Mapped[dict] = mapped_column("metadata", JSON, default=dict, server_default="{}")
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now()
