@@ -1,0 +1,15 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "aml-sdk"
+version = "0.1.0"
+description = "Python SDK for Adaptive Memory Layer"
+requires-python = ">=3.10"
+dependencies = [
+    "httpx>=0.27,<1",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/aml_sdk"]
